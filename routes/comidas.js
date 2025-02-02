@@ -29,6 +29,7 @@ import express from 'express';
 const router = express.Router();
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import 'dotenv/config';
+import Comida from '../models/comida.js';
 
 // Variables de entorno
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -76,7 +77,7 @@ router.post('/', async (req, res) => {
 });
 
 // GET /api/comidas
-router.get('/', async (req, res) => {
+/* router.get('/', async (req, res) => {
    try {
     const getComidas = await run(async (comidas) => {
      return await comidas.find().toArray();
@@ -85,6 +86,15 @@ router.get('/', async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
-  });
+  }); */
+
+  router.get('/', async (req, res) => {
+    try {
+    const comidas = await Comida.find();
+    res.json(comidas);
+    } catch (error) {
+    res.status(500).json({ message: error.message });
+    }
+ });
 
 export default router;
