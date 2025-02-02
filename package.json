@@ -3,10 +3,10 @@
     "type": "module",
     "version": "1.0.0",
     "description": "API para registrar comidas con MongoDB",
-    "main": "app.js",
+    "main": "server.js",
     "scripts": {
-        "start": "node app.js",
-        "dev": "nodemon app.js"
+        "start": "node server.js",
+        "dev": "nodemon server.js"
     },
     "keywords": [],
     "author": "",
