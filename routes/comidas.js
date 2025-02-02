@@ -41,7 +41,7 @@ const client = new MongoClient(MONGODB_URI, {
     },
 });
 
-async function run(callback) {
+/* async function run(callback) {
   try {
     await client.connect();
     const db = client.db('miPlanNutricional');
@@ -55,10 +55,10 @@ async function run(callback) {
     } finally {
        await client.close()
     }
-}
+} */
 
 // POST /api/comidas
-router.post('/', async (req, res) => {
+/* router.post('/', async (req, res) => {
   try {
    const newComida = await run(async (comidas) => {
      const nuevaComida = {
@@ -73,6 +73,16 @@ router.post('/', async (req, res) => {
    res.status(201).json(newComida);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+}); */
+
+router.post('/', async (req, res) => {
+  try {
+      const nuevaComida = new Comida(req.body);
+      const comidaGuardada = await nuevaComida.save();
+      res.status(201).json(comidaGuardada);
+  } catch (error) {
+      res.status(400).json({ message: error.message });
   }
 });
 
